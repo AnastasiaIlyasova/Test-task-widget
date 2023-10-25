@@ -37,32 +37,36 @@ var categories = [
 let tabsItem = document.querySelectorAll('.tabs__item')
 let tabsBlock = document.querySelectorAll('.tabs__block')
 
-for (let i = 0; i<categories.length; i++){
-        tabsItem[i].innerHTML = categories[i].categoryName
+//Add category name
+for (let i = 0; i<categories.length; i++) {
+    tabsItem[i].innerHTML = categories[i].categoryName
 }
 
+//Add product name and image
 let newTab = []
 for(let i = 0; i<tabsBlock.length; i++) {
     for (let j = 0; j < products.length; j++) {
         if (categories[i].categoryId === products[j].categoryId) {
-            newTab.push(`<img src="http://rrstatic.retailrocket.net/test_task/tovar.jpg" alt=""/>`)
+            newTab.push('<img src="http://rrstatic.retailrocket.net/test_task/tovar.jpg" alt=""/>')
             newTab.push(products[j].productName)
         }
     }
 }
-function change(block,num1,num2,num3,num4,num5,num6){
+
+function changeProductBody(block,num1,num2,num3,num4,num5,num6) {
     tabsBlock[block].innerHTML = `<div class="product-group">${newTab.slice(num1,num2).join('')}</div>
     <div class="product-group">${newTab.slice(num2,num3).join('')}</div>
     <div class="product-group">${newTab.slice(num3,num4).join('')}</div>
     <div class="product-group">${newTab.slice(num4,num5).join('')}</div>
     <div class="product-group">${newTab.slice(num5,num6).join('')}</div>`
 }
-change(0,0,2,4,6,8,10)
-change(1,10,12,14,16,18,20)
-change(2,20,22,24,26,28,30)
-change(3,30,32,34,36,38,40)
-change(4,40,42,44,46,48,50)
+changeProductBody(0,0,2,4,6,8,10)
+changeProductBody(1,10,12,14,16,18,20)
+changeProductBody(2,20,22,24,26,28,30)
+changeProductBody(3,30,32,34,36,38,40)
+changeProductBody(4,40,42,44,46,48,50)
 
+//Change background color on active tab
 tabsItem.forEach((tab)=>{
     tab.addEventListener('click',()=>{
         tabsItem.forEach((tab)=>{tab.classList.remove('active')})
