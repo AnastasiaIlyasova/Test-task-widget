@@ -34,10 +34,59 @@ var categories = [
     {categoryId:5, categoryName: 'Брюки'},
 ];
 
+//Add tabs
+let content = document.querySelector('.content')
+let tabsItems = document.createElement('nav')
+tabsItems.classList.add('tabs__items')
+content.prepend(tabsItems)
+
+for (let i=0;i<categories.length;i++) {
+    let tabsItem = document.createElement('a')
+    tabsItem.classList.add('tabs__item')
+    tabsItems.appendChild(tabsItem)
+}
+
+//Set tabs attributes
+let tabsItemAll = document.querySelectorAll('.tabs__item')
+ for (let j=0;j<tabsItemAll.length;j++) {
+     tabsItemAll[j].setAttribute('id',`tab${j+1}`)
+     if (j<=9) {
+         tabsItemAll[j].setAttribute('href',`#tab_0${j+1}`)
+     } else {
+         tabsItemAll[j].setAttribute('href',`#tab_${j+1}`)
+     }
+ }
+
+//Add tabs-body container
+let tabsBodyContainer = document.createElement('div')
+tabsBodyContainer.classList.add('tabs__body-container')
+content.append(tabsBodyContainer)
+
+//Add tabs-body in tabs-body container
+for (let i=0; i<categories.length; i++) {
+    let tabsBody = document.createElement('div')
+    tabsBody.classList.add('tabs__body')
+    tabsBodyContainer.appendChild(tabsBody)
+}
+
+//Add tabs block
+let tabsBodyAll = document.querySelectorAll('.tabs__body')
+for (let i=0;i<categories.length;i++) {
+    let tabsBlock = document.createElement('div')
+    tabsBlock.classList.add('tabs__block')
+    tabsBodyAll[i].appendChild(tabsBlock)
+}
+
+//Set tabs block attributes
+let tabsBlockAll = document.querySelectorAll('.tabs__block')
+for(let j=0; j<tabsBlockAll.length; j++) {
+    tabsBlockAll[j].setAttribute('id',`tab_0${j+1}`)
+}
+
+//Add category name
 let tabsItem = document.querySelectorAll('.tabs__item')
 let tabsBlock = document.querySelectorAll('.tabs__block')
 
-//Add category name
 for (let i = 0; i<categories.length; i++) {
     tabsItem[i].innerHTML = categories[i].categoryName
 }
